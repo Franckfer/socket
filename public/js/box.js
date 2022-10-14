@@ -3,6 +3,8 @@ let closeModal = document.getElementById('closeModal');
 let modal = document.getElementById('modal');
 let btnUrl = document.getElementById('btnUrl');
 let form = document.getElementById('form');
+// import { io } from "socket.io-client";
+// const socket = io("ws://localhost:3000");
 
 // abrir
 openModal.addEventListener('click', () => {
@@ -19,27 +21,21 @@ closeModal.addEventListener('click', () => {
 // modal.addEventListener('click', () => {
 //     modal.style.visibility = 'hidden';
 // })
- form.addEventListener('submit', (e) => {
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-     console.log('click')
-     let data = new FormData(form);
-   let message ={
-    message:data.get('inputText')
-   }
-    fetch('../../body',{
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(message)
-   }).then((a)=>a.json())
-    .then(b =>console.log(b))
-    console.log(data.get('inputText'));
-    //let url = document.getElementById('url').value;
-    //console.log(url);
-    //let iframe = document.getElementById('iframe');
-    //iframe.src = url;
-    
+    console.log('click')
+    let data = new FormData(form);
+    let message = {
+        message: data.get('inputText')
+    }
+   
+    socket.emit("message", message);
+
+    // receive a message from the server
+    socket.on("message", (data) => {
+        console.log(data);
+    });
+
 })
 
 
