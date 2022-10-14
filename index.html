@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">    
+    <title>Modal</title>
+</head>
+<body>
+
+    
+    <button id="openModal" class="btnModal">
+        <input id="logo" type="image" src="/images/logo.svg" />
+    </button>
+    
+    <div id="modal" class="modalContainer">
+        <div class="modalContent">
+
+            <div class="modalHeader">
+                <button id="closeModal" class="btnClose">
+                    x
+                    <!-- <input type="image" src="/close-button.svg" /> -->
+                </button>
+                <div class="support">
+                    <img src="/images/support.svg" alt="support">
+                    <h3>Agente: Azul</h3>
+                </div>
+            </div>
+            
+            <div class="modalBody">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+            </div>
+
+            <div>
+                <form id="form" class="modalInput">
+                    <input class="inputText" name="inputText" type="text" placeholder="Escriba su mensaje">
+                    <button class="btnSend">
+                        <img src="/images/send.svg" alt="send" type="submit" />
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <button id="btnUrl" class="btnAgent">
+        <p>Comunicarse con un Agente</p>
+        <img src="/images/phone.svg" alt="phone">
+    </button>
+
+    <script src="/js/box.js"></script>
+    <!-- <script src="http://localhost:3000/socket.io/socket.io.js"></script> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+    </script>
+</body>
+</html>
