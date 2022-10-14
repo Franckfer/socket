@@ -19,15 +19,29 @@ closeModal.addEventListener('click', () => {
 // modal.addEventListener('click', () => {
 //     modal.style.visibility = 'hidden';
 // })
-
-form.addEventListener('submit', (e) => {
+ form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log('click')
-
-    let data = new FormData(form);
+     console.log('click')
+     let data = new FormData(form);
+   let message ={
+    message:data.get('inputText')
+   }
+    fetch('../../body',{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(message)
+   }).then((a)=>a.json())
+    .then(b =>console.log(b))
     console.log(data.get('inputText'));
     //let url = document.getElementById('url').value;
     //console.log(url);
     //let iframe = document.getElementById('iframe');
     //iframe.src = url;
+    
 })
+
+
+
+
