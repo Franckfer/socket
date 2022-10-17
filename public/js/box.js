@@ -3,6 +3,11 @@ let closeModal = document.getElementById('closeModal');
 let modal = document.getElementById('modal');
 let btnUrl = document.getElementById('btnUrl');
 let form = document.getElementById('form');
+
+//const Pusher = require('pusher');
+//const dotenv = require('dotenv');
+//import Echo from 'laravel-echo';
+//dotenv.config();
 // import { io } from "socket.io-client";
 // const socket = io("ws://localhost:3000");
 
@@ -28,13 +33,29 @@ form.addEventListener('submit', (e) => {
     let message = {
         message: data.get('inputText')
     }
-   
+
     socket.emit("message", message);
 
     // receive a message from the server
     socket.on("message", (data) => {
         console.log(data);
     });
+
+
+    //import window.Pusher from 'pusher-js';
+
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: process.env.PUSHER_APP_KEY,
+        cluster: process.env.PUSHER_APP_CLUSTER,
+        //forceTLS: true
+
+    });
+
+    window.Echo.channel('web-channel')
+        .listen('my-event', (e) => {
+            console.log(e);
+        });
 
 })
 
